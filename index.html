@@ -1,68 +1,124 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Define character encoding and make website responsive to different screen sizes -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css\style.css">
+
+    <!-- Link favicon for the website icon in browser tab -->
+    <link rel="icon" href="asset/favicon.svg">
+
+    <!-- Page title displayed on the browser tab -->
+    <title>BMI Calculator</title>
+
+    <!-- Link external CSS file for styling -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Link external JavaScript file for interactivity -->
+    <script src="/js/script.js"></script>
 </head>
 <body>
-    <main>
-        <!-- Section Form -->
-        <section>
-            <div>
-                <header>
-                    <h1>Kalkulator BMI</h1>
-                </header>
-        
-                <article>
-                    <p>Lorem ipsum</p>
-                </article>
-            </div>
 
-            <form action="" class="color-section">
+    <!-- Flip card container for the BMI calculator -->
+    <div class="flip-card">
+        <!-- Flip card inner container that allows flipping between front and back sections -->
+        <div class="flip-card-inner" id="flipCardInner">
+
+            <!-- Front section: Form for user input -->
+            <section class="flip-card-front">
                 <div>
-                    <label for="berat badan">Berat Badan:</label>
-                    <input type="number" name="" id="berat-badan">
+                    <!-- Header of the form section -->
+                    <header>
+                        <h1>Kalkulator BMI</h1>
+                    </header>
+            
+                    <!-- Article containing introductory text about BMI -->
+                    <article>
+                        <p>Berat badan ideal adalah impian semua orang.Tidak hanya memiliki bentuk tubuh yang menunjang penampilan, berat badan ideal juga menandakan kondisi tubuh yang sehat. Bagaimana denganmu? Yuk, hitung sekarang di kalkulator BMI</p>
+                    </article>
                 </div>
 
-                <button>Hitung BMI</button>
-                <button>Rest</button>
-            </form>
+                <!-- Form for BMI calculation input -->
+                <form name="bmi-form">
+                    <!-- Radio buttons for gender selection -->
+                    <label>Jenis Kelamin</label> <br>
+                    <div style="padding: 0.5rem 0;">
+                        <input type="radio" name="gender" id="man" value="Pria">
+                        <label for="man" style="margin-right: 2rem;">Pria</label>
+                        <input type="radio" name="gender" id="woman" value="Wanita">
+                        <label for="woman">Wanita</label><br>
+                    </div>
 
-            <div>
+                    <!-- Input for age with validation -->
+                    <label for="age">Usia (tahun)</label>
+                    <input type="number" name="age" id="age" min="1" max="999" maxlength="3" placeholder="Tuliskan Usia Anda" oninput="inputChange(this, 'age-error')">
+                    <span id="age-error" class="error-message"></span><br>
+
+                    <!-- Input for weight with validation -->
+                    <label for="body-weight">Berat Badan (kg)</label>
+                    <input type="number" name="body-weight" id="body-weight" min="1" maxlength="3" placeholder="Tuliskan Berat Badan Anda" oninput="inputChange(this, 'body-weight-error')">
+                    <span id="body-weight-error" class="error-message"></span><br> 
+
+                    <!-- Input for height with validation -->
+                    <label for="body-height">Tinggi Badan (cm)</label>
+                    <input type="number" name="body-height" id="body-height" min="1" maxlength="3" placeholder="Tuliskan Tinggi Badan Anda" oninput="inputChange(this, 'body-height-error')">
+                    <span id="body-height-error" class="error-message"></span><br>
+
+                    <!-- Button to calculate BMI -->
+                    <input type="button" value="Hitung BMI" onclick="validateForm()" class="button-calc">
+                    <!-- Button to reset the form inputs -->
+                    <input type="reset" value="Reset">
+                </form>
+                
+            </section>
+
+            <!-- Back section: Displays the result of the BMI calculation -->
+            <section class="flip-card-back">
                 <header>
-                    <h2>Keunggulan Fitur</h2>
+                    <h1>Hasil</h1>
                 </header>
-        
+
+                <!-- Section to display BMI calculation result and category -->
+                <div class="result-section">
+                    <h2 id="bmi-status">Keterangan Hasil</h2>
+                    <p id="bmi-result" class="text-center" style="font-weight: bold; font-size: 2rem; color: black;"></p>
+                    <p id="bmi-description" class="text-center">Anda memiliki berat badan berlebih</p>
+                </div>
+
+                <!-- Additional information and disclaimer about BMI results -->
                 <article>
-                    <p>lorem ipsum</p>
+                    <p id="bmi-explanation">
+                        test
+                    </p>
+                    <p>BMI tidak sepenuhnya mewakili diagnosis menyeluruh dari kesehatan tubuh dan resiko penyakit seseorang. Anda perlu konsultasi lebih lanjut mengenai resiko dan kekhawatiran anda terkait dengan berat badan anda.</p>
                 </article>
-            </div>
-            
-        </section>
 
-        <!-- Section Result-->
-        <section>
-            <header>
-                <h1>Hasil</h1>
-            </header>
-
-            <!-- Hasil Kalkulasi-->
-            <div class="color-section text-center">
-                <h2>Hasil Kalkulasi</h2>
-
-                <p id="result">24.5</p>
-            </div>
-
-            <!--Info dari Hasil-->
-            <article>
-                <p>lorem</p>
-            </article>
-            
-        </section>
-    </main>
+                <!-- Button to flip the card back to the input form -->
+                <button onclick="flipCard()">Cek Ulang</button>
+                
+            </section>            
+        </div>
+    </div>
     
-     <footer>
+    <!-- Footer section providing additional features and disclaimers -->
+    <footer>
+        <div>
+            <header>
+                <h3>Keunggulan Fitur</h3>
+            </header>
+            
+            <article>
+                <p>1. Menghitung berat badan</p>
+                <p>2. Menentukan kategori berat badan ideal atau tidak</p>
+                <p>3. Mempersiapkan program penurunan berat badan</p>
+
+                <!-- Disclaimer about the BMI calculator's limitations -->
+                <p>Kalkulator ini hanya boleh digunakan oleh orang dewasa (wanita hamil atau menyusui tidak boleh mengandalkan pembacaan BMI ini) dan tidak ada tindakan yang harus diambil berdasarkan nilainya selain berkonsultasi dengan orang yang memenuhi syarat seperti dokter</p>
+
+                <!-- Explanation of BMI calculation formula -->
+                <p>Kalkulator akan memberi anda gambaran tentang perbandingan berat badan anda dengan nilai umum Indeks Massa Tubuh (atau BMI) dihitung sebagai berat badan anda (dalam kilogram) dibagi dengan kuadrat tinggi badan anda (dalam meter) atau BMI = Kg/M2</p>
+            </article>
+        </div>
         <span>Made by Sisy</span>
     </footer>
 </body>

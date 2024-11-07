@@ -1,21 +1,59 @@
-
-main {
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    /* height: 100vh; */
     display: flex;
-    justify-content: space-around;
+    align-content: space-around;
+    justify-content: space-between;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 footer {
+    width: 500px;
+    margin: 1rem;
+    padding: 2rem 1rem;
+    background-color: beige;
+    border-radius: 1.5rem;
     text-align: center;
 }
 
-.color-section {
-    background-color: aliceblue;
-    padding: 12px;
-    border-radius: 8px;
+li {
+    text-decoration: none;
+    list-style: none;
 }
 
-.text-center {
-    text-align: center;
+header, p, span, label{
+    margin-bottom: 0.5rem;
+}
+
+article {
+    margin: 1rem 0.5rem;
+}
+
+p {
+    text-align: justify;
+}
+
+form {
+    text-align: start;
+    background-color: navajowhite;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+input[type=button], input[type=reset], button{
+    width: 8rem;
+    height: 2rem;
+    border: 0px;
+    margin: 0 1rem;
+    border-radius: 0.8rem;
+    background-color: peru;
+    color: white;
 }
 
 input[type=number] {
@@ -28,14 +66,61 @@ input[type=number] {
     box-sizing: border-box;
 }
 
-button {
-    border: 0;
-    background-color: aquamarine;
-    padding: 8px;
-    border-radius: 8px;
+.text-center {
+    text-align: center;
+}
+
+.result-section {
+    background-color: navajowhite;
+    border-radius: 1rem;
+    padding: 0.5rem;
 }
 
 #result {
     font-size: 30px;
     font-weight: bold;
 }
+
+.error-message {
+    display: block;
+    color: red;
+    font-size: 14px;
+    margin: 0 0.5rem;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    width: 500px;
+    height: 90vh;
+    margin: 1rem;
+    perspective: 1000px;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: inherit;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  /* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    display: grid;
+    width: inherit;
+    height: inherit;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background-color: lightgoldenrodyellow;
+    color: darkslategray;
+    backface-visibility: hidden;
+    align-content: center;
+    justify-items: center;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
