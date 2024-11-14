@@ -9,4 +9,4 @@ the requirements for this project:
 4. Input Form Validation
 5. Code explanation on comments
 
-
+https://revou-fundamental-course.github.io/28-oct-24-ssygnrchm/
